@@ -22,7 +22,7 @@ function Firstpage() {
         console.error(error);
       });
 
-      window.location.href="/display"
+      window.location.href="/somemail"
   };
   
 

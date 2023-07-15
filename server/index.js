@@ -32,6 +32,26 @@ app.post("/",(req,res)=>{
 })
 
 
+
+app.get("/api/getEmail/:searchname", async (req,res)=>{
+    try{
+        const {searchname}=req.params
+
+        const user= await storer.findOne({username:searchname});
+
+        if(!user){
+            return res.status(404).json({error:'User not found'});
+        }
+        return res.json({ email: user.email });
+    } 
+    catch (err) {
+      console.error('Error email:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+});
+
+
 const PORT= process.env.PORT || 5005
 
 app.listen(PORT ,()=>{
